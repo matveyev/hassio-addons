@@ -1,6 +1,5 @@
 #!/usr/bin/with-contenv bashio
 
-bashio::log.debug "Building options"
 declare -a options
 KEYSTORE="/data/ssh-keystore"
 
@@ -12,7 +11,7 @@ options+=(-o ServerAliveInterval=$(bashio::config 'ServerKeepAliveInterval'))
 
 for id in $(bashio::config "tunnels|keys"); do
   tunnel=$(bashio::config "tunnels[${id}].tunnel")
-  bashio::log.debug "Adding tunnel to request: $tunnel"
+  bashio::log.info "Adding tunnel to request: $tunnel"
   options+=(-R $tunnel)
 done
 
@@ -29,10 +28,8 @@ if [[ $(bashio::config.true 'tcp_alias') ]]; then
   options+=(tcp-alias=true)
 fi
 
-bashio::log.debug "Options built"
-
-bashio::log.debug "Command to execute:"
-bashio::log.debug "ssh ${options[@]}"
+bashio::log.info "Command to execute:"
+bashio::log.info "ssh ${options[@]}"
 
 bashio::log.info "Attempting to establish SSH tunnels..."
 exec ssh ${options[@]}
