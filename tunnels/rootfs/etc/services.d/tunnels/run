@@ -32,7 +32,5 @@ bashio::log.info "Command to execute:"
 bashio::log.info "ssh ${options[@]}"
 
 bashio::log.info "Attempting to establish SSH tunnels..."
-ssh ${options[@]}
-exitcode=$?
+exec ssh ${options[@]}
 
-bashio::log.info "ssh exited with code $exitcode"
