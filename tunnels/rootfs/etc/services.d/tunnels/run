@@ -9,7 +9,6 @@ options+=(-p $(bashio::config 'port'))
 options+=(-i "$KEYSTORE/tunnels_rsa")
 options+=(-o StrictHostKeyChecking=no)
 options+=(-o ServerAliveInterval=$(bashio::config 'ServerKeepAliveInterval'))
-options+=(-o PubkeyAcceptedKeyTypes=ssh-rsa)
 
 for id in $(bashio::config "tunnels|keys"); do
   tunnel=$(bashio::config "tunnels[${id}].tunnel")
