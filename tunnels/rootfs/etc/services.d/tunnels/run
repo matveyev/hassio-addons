@@ -4,6 +4,7 @@ declare -a options
 KEYSTORE="/data/ssh-keystore"
 
 options+=(-T)
+options+=(-N)
 options+=(-p $(bashio::config 'port'))
 options+=(-i "$KEYSTORE/tunnels_rsa")
 options+=(-o StrictHostKeyChecking=no)
